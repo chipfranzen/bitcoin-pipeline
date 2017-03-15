@@ -1,0 +1,2 @@
+* 0 * * * spark-submit bitcoin_data_normalizer.py
+* 1 * * * spark-submit bitcoin_spark.py

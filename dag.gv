@@ -1,0 +1,41 @@
+
+digraph dataflow {
+    I [label="BitCoin
+REST API", shape="plaintext"];
+    R [label="HTTP
+requests", shape="box"];
+    DL [label="S3 Data
+Lake", shape="folder"];
+    S [label="Stream
+Processing", shape="box"];
+    CL [label="Normalization
+Cluster", shape="hexagon"];
+    S2 [label="S3 parquet
+files", shape="folder"];
+    CL2 [label="Batch Processing
+(Spark)", shape="hexagon"];
+    S3 [label="S3 results
+files", shape="folder"];
+    FE [label="Front End
+Server", shape="box"];
+    W [label="the web", shape="plaintext"];
+    
+    I -> R;
+    R -> DL [label="Kinesis
+Firehose"];
+    R -> S [label="Kinesis
+Streams"];
+    DL -> CL [label="raw
+data"];
+    CL -> S2 [label="structured
+data"];
+    S2 -> CL2;
+    CL2 -> S3 [label="batch
+results"];
+    S -> S3 [label="stream
+results"];
+    S3 -> FE;
+    FE -> W;
+    
+
+}
